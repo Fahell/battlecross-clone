@@ -45,8 +45,15 @@ export function stepRacerPhysics(r: Racer, input: SteerInput, dt: number): void 
 
   // Grip: amortiza apenas o componente lateral (0.96/frame → derrapa).
   latV *= Math.pow(PHYS.grip, dt * 60);
+  // Frear também ajuda a controlar o deslize lateral.
+  if (cmd.brake) latV *= Math.pow(PHYS.brakeGrip, dt * 60);
 
   r.vel = add(scale(fwd, longV), scale(side, latV));
+
+  // Cap da magnitude total: durante a derrapagem a soma nunca passa de maxSpeed.
+  const total = Math.hypot(r.vel.x, r.vel.y);
+  if (total > PHYS.maxSpeed) r.vel = scale(r.vel, PHYS.maxSpeed / total);
+
   r.pos = add(r.pos, scale(r.vel, dt));
 
   if (r.stunTimer > 0) r.stunTimer = Math.max(0, r.stunTimer - dt);

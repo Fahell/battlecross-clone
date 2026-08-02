@@ -6,6 +6,7 @@ export const PHYS = {
   coastDecel: 40, // px/s²
   turnRate: 2.4, // rad/s
   grip: 0.96, // fração de velocidade mantida por frame (<1 = derrapa)
+  brakeGrip: 0.85, // fração lateral mantida por frame durante a frenagem
   racerRadius: 14, // px
   wallBounce: 0.55, // fração da velocidade normal mantida na parede
   bumpRestitution: 0.35,

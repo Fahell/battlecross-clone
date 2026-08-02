@@ -16,12 +16,17 @@ export function updateLapProgress(r: Racer, prevPos: Vec2, track: Track): LapUpd
   const result: LapUpdate = { checkpointPassed: false, lapCompleted: false };
   if (r.finished) return result;
 
-  const cp = track.checkpoints[r.nextCheckpoint];
-  if (cp) {
+  // Processa crossings encadeados (racer pode cruzar 2 checkpoints no mesmo tick).
+  let pending = true;
+  while (pending) {
+    const cp = track.checkpoints[r.nextCheckpoint];
+    if (!cp) break;
     const cross = segIntersect(prevPos, r.pos, cp.from, cp.to);
     if (cross.hit && crossesForward(prevPos, r.pos, cp.tangent)) {
       r.nextCheckpoint += 1;
       result.checkpointPassed = true;
+    } else {
+      pending = false;
     }
   }
 

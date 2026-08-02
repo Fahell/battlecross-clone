@@ -21,4 +21,16 @@ describe('autopilot', () => {
     expect(world.time).toBeCloseTo(40, 0);
     expect(world.player.lapsCompleted).toBeGreaterThanOrEqual(1);
   });
+
+  it('marks the race finished after the configured laps', () => {
+    const track = buildTrack(cityTrackDef);
+    const world = createWorld(track, { laps: 1, autopilot: true });
+    const input = createActionState();
+    for (let i = 0; i < 60 * 40 && !world.raceOver; i++) {
+      stepWorld(world, TICK, input);
+    }
+    expect(world.raceOver).toBe(true);
+    expect(world.player.finishTime).not.toBeNull();
+    expect(world.player.lapsCompleted).toBe(1);
+  });
 });

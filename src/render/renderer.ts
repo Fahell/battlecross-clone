@@ -190,6 +190,36 @@ function drawDebug(ctx: CanvasRenderingContext2D, track: Track, world: World): v
   }
 }
 
+/**
+ * Número de winding (regra nonzero) do caminho de preenchimento do anel da
+ * pista — o mesmo caminho desenhado em drawTrack (leftEdge adiante + rightEdge
+ * invertida). 0 = não preenchido (fora da pista OU no buraco interno).
+ */
+export function trackWindingAt(track: Track, p: Vec2): number {
+  let w = 0;
+  const n = track.leftEdge.length;
+  // leftEdge adiante
+  for (let i = 0; i < n; i++) {
+    const a = track.leftEdge[i];
+    const b = track.leftEdge[(i + 1) % n];
+    if ((a.y <= p.y && b.y > p.y) || (b.y <= p.y && a.y > p.y)) {
+      const x = a.x + ((p.y - a.y) / (b.y - a.y)) * (b.x - a.x);
+      if (x > p.x) w += a.y <= p.y ? 1 : -1;
+    }
+  }
+  // rightEdge invertida
+  const m = track.rightEdge.length;
+  for (let i = m - 1; i >= 0; i--) {
+    const a = track.rightEdge[i];
+    const b = track.rightEdge[(i - 1 + m) % m];
+    if ((a.y <= p.y && b.y > p.y) || (b.y <= p.y && a.y > p.y)) {
+      const x = a.x + ((p.y - a.y) / (b.y - a.y)) * (b.x - a.x);
+      if (x > p.x) w += a.y <= p.y ? 1 : -1;
+    }
+  }
+  return w;
+}
+
 function roundedRect(
   ctx: CanvasRenderingContext2D,
   x: number,
