@@ -31,16 +31,16 @@ pnpm build       # build de produção em dist/
 
 ## Roadmap
 
-| Fase | Status | Entrega |
-|---|---|---|
-| F0 — Fundação | 🚧 em andamento | Repo, scaffolding, CI |
-| F1 — Engine & Pista | — | Loop, física escorregadia, Cidade |
-| F2 — Itens | — | Sistema de itens (8) |
-| F3 — IA & 6 pilotos | — | CPUs com rubber-band |
-| F4 — Battle Mode | — | Menus, HUD, mini-campeonato |
-| F5 — Grand Prix | — | Arquétipos, pontuação, campanha |
-| F6 — Áudio & polimento | — | Música/SFX, pistas 2–3, arte |
-| F7 — Validação | — | E2E browser + perf |
+| Fase                   | Status          | Entrega                           |
+| ---------------------- | --------------- | --------------------------------- |
+| F0 — Fundação          | 🚧 em andamento | Repo, scaffolding, CI             |
+| F1 — Engine & Pista    | —               | Loop, física escorregadia, Cidade |
+| F2 — Itens             | —               | Sistema de itens (8)              |
+| F3 — IA & 6 pilotos    | —               | CPUs com rubber-band              |
+| F4 — Battle Mode       | —               | Menus, HUD, mini-campeonato       |
+| F5 — Grand Prix        | —               | Arquétipos, pontuação, campanha   |
+| F6 — Áudio & polimento | —               | Música/SFX, pistas 2–3, arte      |
+| F7 — Validação         | —               | E2E browser + perf                |
 
 ## Licença
 
