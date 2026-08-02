@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    // Libera o quicktunnel do Cloudflare (Cloud Shell) — dev only.
+    allowedHosts: ['.trycloudflare.com'],
   },
   build: {
     outDir: 'dist',
