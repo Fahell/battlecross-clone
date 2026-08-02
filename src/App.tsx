@@ -4,8 +4,12 @@ import { RaceScreen } from './ui/RaceScreen';
 
 type Screen = 'menu' | 'race';
 
+const initialScreen: Screen = new URLSearchParams(window.location.search).has('race')
+  ? 'race'
+  : 'menu';
+
 export default function App() {
-  const [screen, setScreen] = useState<Screen>('menu');
+  const [screen, setScreen] = useState<Screen>(initialScreen);
   const [raceKey, setRaceKey] = useState(0);
 
   const startTest = (): void => {
