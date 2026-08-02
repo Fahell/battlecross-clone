@@ -1,13 +1,26 @@
-import './App.css';
+import { useState } from 'react';
+import { MainMenu } from './ui/MainMenu';
+import { RaceScreen } from './ui/RaceScreen';
 
-function App() {
+type Screen = 'menu' | 'race';
+
+export default function App() {
+  const [screen, setScreen] = useState<Screen>('menu');
+  const [raceKey, setRaceKey] = useState(0);
+
+  const startTest = (): void => {
+    setRaceKey((k) => k + 1);
+    setScreen('race');
+  };
+
+  if (screen === 'menu') {
+    return <MainMenu onStartTest={startTest} />;
+  }
   return (
-    <main className="title-screen">
-      <h1 className="title">BATTLE CROSS</h1>
-      <p className="subtitle">clone para navegador — homenagem ao clássico de 1994</p>
-      <p className="hint">Fase 0 concluída. Menus e corrida chegam nas próximas fases.</p>
-    </main>
+    <RaceScreen
+      key={raceKey}
+      onExit={() => setScreen('menu')}
+      onRestart={() => setRaceKey((k) => k + 1)}
+    />
   );
 }
-
-export default App;

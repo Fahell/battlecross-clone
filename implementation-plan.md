@@ -208,12 +208,15 @@ interface Track {
 
 ### F1 — Engine & Pista 1 (Cidade)
 
-- [ ] Loop com fixed timestep; mundo/entidades
-- [ ] Física escorregadia (grip, aceleração, colisões parede/círculo)
-- [ ] Modelo de pista + render de Cidade (placeholders) + centerline/checkpoints/startLine
-- [ ] Input teclado → ações
-- [ ] 1 racer controlável; contagem de volta
+- [x] Loop com fixed timestep; mundo/entidades
+- [x] Física escorregadia (grip, aceleração, colisões parede/círculo)
+- [x] Modelo de pista + render de Cidade (placeholders) + centerline/checkpoints/startLine
+- [x] Input teclado → ações
+- [x] 1 racer controlável; contagem de volta
 - **Aceite:** unit tests de física e laps verdes; corrida dirigível com derrapagem.
+
+> ✅ Concluída em 2026-08-02 — 32 testes verdes (math, physics, track, laps, autopilot).
+> Autopilot dev (`?autopilot`) e debug (`?debug`) para E2E estável.
 
 ### F2 — Itens
 

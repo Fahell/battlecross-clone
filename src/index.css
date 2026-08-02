@@ -1,11 +1,12 @@
 :root {
   color-scheme: dark;
-  font-family: 'Courier New', ui-monospace, monospace;
-  line-height: 1.5;
-  color: #e8e6f0;
-  background-color: #12101a;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  --bg: #14161c;
+  --panel: #1d212b;
+  --text: #e8e6df;
+  --muted: #9aa4b5;
+  --accent: #ff4fd8;
+  --accent2: #4dc9ff;
+  --good: #4dff88;
 }
 
 * {
@@ -15,12 +16,226 @@
 html,
 body,
 #root {
+  height: 100%;
   margin: 0;
-  min-height: 100%;
 }
 
 body {
-  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', ui-monospace, SFMono-Regular, Menlo, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+.screen {
+  min-height: 100%;
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ----- Menu ----- */
+.menu-screen {
+  gap: 18px;
+  text-align: center;
+}
+
+.title {
+  font-size: 52px;
+  letter-spacing: 6px;
+  margin: 0;
+  color: var(--accent);
+  text-shadow:
+    0 0 18px rgba(255, 79, 216, 0.55),
+    3px 3px 0 #3b0f30;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0;
+}
+
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.phase-tag {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--accent2);
+  border: 1px solid rgba(77, 201, 255, 0.35);
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+/* ----- Botões ----- */
+.btn {
+  font: inherit;
+  font-size: 15px;
+  letter-spacing: 1px;
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid #333a4d;
+  border-radius: 6px;
+  padding: 12px 26px;
+  cursor: pointer;
+  transition:
+    transform 0.08s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.btn:hover {
+  border-color: var(--accent2);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a0f18;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: #ff7ce0;
+}
+
+/* ----- Corrida ----- */
+.race-screen {
+  justify-content: flex-start;
+}
+
+.game-frame {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 4 / 3;
+  border: 3px solid #333a4d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+  background: #000;
+}
+
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 10px;
+}
+
+.hud-lap,
+.hud-pos,
+.hud-track {
+  background: rgba(10, 12, 18, 0.72);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.hud-track {
+  color: var(--accent2);
+}
+
+.hud-bottom {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 12, 18, 0.72);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 8px 14px;
+}
+
+.speed-bar {
+  width: 180px;
+  height: 10px;
+  background: #262b36;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.speed-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--good), var(--accent2), var(--accent));
+  transition: width 0.1s linear;
+}
+
+.hud-speed-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ----- Overlays ----- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 10, 14, 0.72);
+  pointer-events: auto;
+}
+
+.overlay-card {
+  background: var(--panel);
+  border: 3px solid #3a4256;
+  border-radius: 10px;
+  padding: 26px 32px;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.overlay-card h2 {
+  margin: 0 0 8px;
+  letter-spacing: 2px;
+}
+
+.result-time {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.overlay-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
 }

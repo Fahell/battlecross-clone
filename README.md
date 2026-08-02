@@ -24,6 +24,24 @@ pnpm test        # testes unitários
 pnpm build       # build de produção em dist/
 ```
 
+## Como jogar (F1)
+
+No menu, clique em **"Corrida de teste — Cidade"** para pilotar uma jet-bike no circuito urbano
+(3 voltas, 1 piloto — os outros 5 CPUs chegam na F3):
+
+| Ação           | Tecla     |
+| -------------- | --------- |
+| Acelerar       | ↑ / W     |
+| Frear          | ↓ / S     |
+| Virar          | ← → / A D |
+| Pausar         | Esc / P   |
+| Voltar ao menu | Backspace |
+
+Flags de desenvolvimento (via URL):
+
+- `?autopilot` — piloto automático (usado nos testes E2E)
+- `?debug` — desenha centerline, checkpoints e start line
+
 ## Documentação
 
 - [Especificação do projeto](./battlecross-clone-spec.md)
@@ -31,15 +49,16 @@ pnpm build       # build de produção em dist/
 
 ## Roadmap
 
-| Fase                   | Status          | Entrega                           |
-| ---------------------- | --------------- | --------------------------------- || F0 — Fundação | ✅ concluída | Repo, scaffolding, CI |
-| F1 — Engine & Pista    | —               | Loop, física escorregadia, Cidade |
-| F2 — Itens             | —               | Sistema de itens (8)              |
-| F3 — IA & 6 pilotos    | —               | CPUs com rubber-band              |
-| F4 — Battle Mode       | —               | Menus, HUD, mini-campeonato       |
-| F5 — Grand Prix        | —               | Arquétipos, pontuação, campanha   |
-| F6 — Áudio & polimento | —               | Música/SFX, pistas 2–3, arte      |
-| F7 — Validação         | —               | E2E browser + perf                |
+| Fase                   | Status       | Entrega                           |
+| ---------------------- | ------------ | --------------------------------- |
+| F0 — Fundação          | ✅ concluída | Repo, scaffolding, CI             |
+| F1 — Engine & Pista    | ✅ concluída | Loop, física escorregadia, Cidade |
+| F2 — Itens             | —            | Sistema de itens (8)              |
+| F3 — IA & 6 pilotos    | —            | CPUs com rubber-band              |
+| F4 — Battle Mode       | —            | Menus, HUD, mini-campeonato       |
+| F5 — Grand Prix        | —            | Arquétipos, pontuação, campanha   |
+| F6 — Áudio & polimento | —            | Música/SFX, pistas 2–3, arte      |
+| F7 — Validação         | —            | E2E browser + perf                |
 
 ## Licença
 
